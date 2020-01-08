@@ -1,6 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
-// const testDoc = require("./test.json");
+const testDoc = require("./test.json");
 
 // Connection URL
 const url = "mongodb://localhost:27017";
@@ -9,6 +9,11 @@ const dbName = "testDB";
 // Create a new MongoClient
 const client = new MongoClient(url);
 
+// ------------------------------------------------------
+const docs = [testDoc]; // array of test data to be inserted
+function insertDocs(collection, documents) {
+  collection.insertMany(documents);
+}
 
 function mapFunction1() {
   emit(this.cust_id, this.price); // eslint-disable-line
@@ -20,9 +25,6 @@ function reduceFunction1(keyCustId, valuesPrices) {
 
 const query  = {
   "privacy.privateData": true
-  // "privacy": { 
-  //   "privateData": true
-  // }
 };
 
 // Put test.json into mongo testDB - testCollection before running this file.
@@ -37,6 +39,10 @@ client.connect(async (err) => {
 
   const db = client.db(dbName);
   const collection = db.collection("testCollection1");
+
+  await collection.remove({}); // clear any data in collection before running below.
+
+  await insertDocs(collection, docs); // insert test data
 
   console.log("running mapReduce");
   const result = await collection.mapReduce(
@@ -53,4 +59,3 @@ client.connect(async (err) => {
 
   client.close();
 });
-
