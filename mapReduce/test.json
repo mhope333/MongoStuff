@@ -1,0 +1,17 @@
+{
+  "cust_id" : "xyz789",
+  "status" : "Z",
+  "price" : 999,
+  "items" : [ 
+      {
+          "sku" : "zzzz",
+          "qty" : 50,
+          "price" : 2.52
+      }, 
+      {
+          "sku" : "xxxxx",
+          "qty" : 50,
+          "price" : 2.52
+      }
+  ]
+}

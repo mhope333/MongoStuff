@@ -1,0 +1,19 @@
+{
+  "name": "mongo-stuff",
+  "version": "1.0.0",
+  "description": "messing around with mongo operations",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhope333/MongoStuff.git"
+  },
+  "author": "Matt Hope",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "lodash": "^4.17.15",
+    "mongodb": "^3.4.1"
+  }
+}
