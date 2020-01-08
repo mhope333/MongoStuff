@@ -19,9 +19,9 @@ function reduceFunction1(keyCustId, valuesPrices) {
 }
 
 // Put test.json into mongo testDB - testCollection before running this file.
-// Perform the map-reduce operation on the testCollection1 to group by the cust_id, 
+// Perform the map-reduce operation on all docs in testCollection1 to group by the cust_id, 
 // and calculate the sum of the price for each cust_id:
-// This operation outputs the results to a collection named map_reduce_example.
+// This operation can either output the results to a collection. OR return results directly.
 
 // Use connect method to connect to the Server
 client.connect(async (err) => {
@@ -35,9 +35,11 @@ client.connect(async (err) => {
   const result = await collection.mapReduce(
     mapFunction1,
     reduceFunction1,
-    {out: "map_reduce_example"}
+    // {out: "map_reduce_example"} // outputs into newCollection
+    {out: { inline: 1 }} // returns result 
+    // can pass a mongo query (basically a filter) so that only docs returned by this query are operated on.
   );
-  console.log("completed mapReduce operation");
+  console.log("completed mapReduce operation", result);
 
   client.close();
 });
