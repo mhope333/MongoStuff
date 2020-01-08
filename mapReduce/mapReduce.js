@@ -18,6 +18,13 @@ function reduceFunction1(keyCustId, valuesPrices) {
   return Array.sum(valuesPrices);
 }
 
+const query  = {
+  "privacy.privateData": true
+  // "privacy": { 
+  //   "privateData": true
+  // }
+};
+
 // Put test.json into mongo testDB - testCollection before running this file.
 // Perform the map-reduce operation on all docs in testCollection1 to group by the cust_id, 
 // and calculate the sum of the price for each cust_id:
@@ -36,15 +43,14 @@ client.connect(async (err) => {
     mapFunction1,
     reduceFunction1,
     // {out: "map_reduce_example"} // outputs into newCollection
-    {out: { inline: 1 }} // returns result 
-    // can pass a mongo query (basically a filter) so that only docs returned by this query are operated on.
+    { // options 
+      out: { inline: 1 }, // returns result 
+      // can pass a mongo query (basically a filter) so that only docs returned by this query are operated on.
+      "query": query
+    } 
   );
   console.log("completed mapReduce operation", result);
 
   client.close();
 });
-
-// insertDoc(db) {
-// }
-
 

@@ -2,6 +2,9 @@
   "cust_id" : "xyz789",
   "status" : "Z",
   "price" : 999,
+  "privacy": {
+    "privateData": true
+  },
   "items" : [ 
       {
           "sku" : "zzzz",
