@@ -1,6 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
-const testDoc = require("./test.json");
+const testDocs = require("./test.json");
 
 // Connection URL
 const url = "mongodb://localhost:27017";
@@ -10,7 +10,6 @@ const dbName = "testDB";
 const client = new MongoClient(url);
 
 // ------------------------------------------------------
-const docs = [testDoc]; // array of test data to be inserted
 function insertDocs(collection, documents) {
   collection.insertMany(documents);
 }
@@ -42,7 +41,7 @@ client.connect(async (err) => {
 
   await collection.remove({}); // clear any data in collection before running below.
 
-  await insertDocs(collection, docs); // insert test data
+  await insertDocs(collection, testDocs); // insert test data
 
   console.log("running mapReduce");
   const result = await collection.mapReduce(

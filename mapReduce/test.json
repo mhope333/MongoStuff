@@ -1,20 +1,82 @@
-{
-  "cust_id" : "xyz789",
-  "status" : "Z",
-  "price" : 999,
-  "privacy": {
-    "privateData": true
+[
+  {
+    "cust_id" : "xyz789",
+    "status" : "Z",
+    "price" : 999,
+    "privacy": {
+      "privateData": true
+    },
+    "items" : [ 
+        {
+            "sku" : "zzzz",
+            "qty" : 50,
+            "price" : 2.52
+        }, 
+        {
+            "sku" : "xxxxx",
+            "qty" : 50,
+            "price" : 2.52
+        }
+    ]
   },
-  "items" : [ 
-      {
-          "sku" : "zzzz",
-          "qty" : 50,
-          "price" : 2.52
-      }, 
-      {
-          "sku" : "xxxxx",
-          "qty" : 50,
-          "price" : 2.52
-      }
-  ]
-}
+  {
+    "cust_id" : "xyz789",
+    "status" : "Z",
+    "price" : 999,
+    "privacy": {
+      "privateData": false
+    },
+    "items" : [ 
+        {
+            "sku" : "zzzz",
+            "qty" : 50,
+            "price" : 2.52
+        }, 
+        {
+            "sku" : "xxxxx",
+            "qty" : 50,
+            "price" : 2.52
+        }
+    ]
+  },
+  {
+    "cust_id" : "abc123",
+    "status" : "A",
+    "price" : 123,
+    "privacy": {
+      "privateData": true
+    },
+    "items" : [ 
+        {
+            "sku" : "aaa",
+            "qty" : 5,
+            "price" : 2.5
+        }, 
+        {
+            "sku" : "bbb",
+            "qty" : 5,
+            "price" : 2.5
+        }
+    ]
+  },
+  {
+    "cust_id" : "abc123",
+    "status" : "B",
+    "price" : 123,
+    "privacy": {
+      "privateData": true
+    },
+    "items" : [ 
+        {
+            "sku" : "aaa",
+            "qty" : 5,
+            "price" : 2.5
+        }, 
+        {
+            "sku" : "bbb",
+            "qty" : 5,
+            "price" : 2.5
+        }
+    ]
+  }
+]
