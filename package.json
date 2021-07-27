@@ -11,9 +11,8 @@
   },
   "author": "Matt Hope",
   "license": "UNLICENSED",
-  "dependencies": {},
   "devDependencies": {
-    "lodash": "^4.17.15",
-    "mongodb": "^3.4.1"
+    "lodash": "^4.17.21",
+    "mongodb": "^4.0.1"
   }
 }

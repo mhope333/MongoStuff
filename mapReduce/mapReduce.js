@@ -1,3 +1,4 @@
+// written for mongo version "3.4.1"
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
 const testDocs = require("./test.json");
@@ -24,6 +25,9 @@ function reduceFunction1(keyCustId, valuesPrices) {
 
 const query  = {
   "privacy.privateData": true
+  // "privacy": { 
+  //   "privateData": true
+  // }
 };
 
 // Put test.json into mongo testDB - testCollection before running this file.
