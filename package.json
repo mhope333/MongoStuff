@@ -1,10 +1,8 @@
 {
   "name": "mongo-stuff",
   "version": "1.0.0",
-  "description": "messing around with mongo operations",
-  "scripts": {
-    "test": "grunt test"
-  },
+  "description": "Messing around with mongo operations",
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/mhope333/MongoStuff.git"
@@ -12,6 +10,8 @@
   "author": "Matt Hope",
   "license": "UNLICENSED",
   "devDependencies": {
+    "aws-sdk": "^2.957.0",
+    "etl": "^0.6.12",
     "lodash": "^4.17.21",
     "mongodb": "^4.0.1"
   }
