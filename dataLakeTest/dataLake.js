@@ -1,20 +1,22 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-console */
 const getClient = require("mongodb-atlas-api-client");
+
 const {dataLake, cloudProviderAccess} = getClient({
   "publicKey": "",
   "privateKey": "",
   "baseUrl": "https://cloud.mongodb.com/api/atlas/v1.0",
   "projectId": ""
 });
+
 const AWS = require("aws-sdk");
 const iam = new AWS.IAM({
   "accessKeyId": "",
   "secretAccessKey": ""
 });
+
 function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 const assumeRolePolicy = {
   "Version": "2012-10-17",
   "Statement": [
@@ -32,6 +34,7 @@ const assumeRolePolicy = {
     }
   ]
 };
+
 const bucketAccessPolicy = {
   "Version": "2012-10-17",
   "Statement": [
@@ -61,12 +64,14 @@ const bucketAccessPolicy = {
     }
   ]
 };
+
 async function deleteAll() {
   const {awsIamRoles} = await cloudProviderAccess.getAll();
   console.log(awsIamRoles);
   await Promise.all(awsIamRoles.map(role => cloudProviderAccess.delete("AWS", role.roleId)));
   console.log(await cloudProviderAccess.getAll());
 }
+
 const MongoClient = require("mongodb").MongoClient;
 const uri = "mongodb://myuser:demo123@{HostName}/myFirstDatabase?ssl=true&authSource=admin";
 (async () => {
@@ -98,12 +103,12 @@ const uri = "mongodb://myuser:demo123@{HostName}/myFirstDatabase?ssl=true&authSo
   // Create Data Lake
   const response = await dataLake.create({
     "name": "myFirstDataLake",
-    "cloudProviderConfig": {
-      "aws": {
-        "roleId": roleId,
-        "testS3Bucket": "demo-bucket-ashish"
-      }
-    }
+    // "cloudProviderConfig": {
+      // "aws": {
+      //   "roleId": roleId,
+      //   "testS3Bucket": "matt-atlas-test-bucket"
+      // }
+    // }
   });
   console.log(response);
   const mongoUri = uri.replace("{HostName}", response.hostnames[0]);
@@ -120,7 +125,7 @@ const uri = "mongodb://myuser:demo123@{HostName}/myFirstDatabase?ssl=true&authSo
     //   "createStore": "s3Store",
     //   "provider": "s3",
     //   "region": "eu-west-2",
-    //   "bucket": "demo-bucket-ashish",
+    //   "bucket": "matt-atlas-test-bucket",
     //   "delimiter": "/"
     // });
     // console.log(JSON.stringify(s3StoreResult));
@@ -129,7 +134,7 @@ const uri = "mongodb://myuser:demo123@{HostName}/myFirstDatabase?ssl=true&authSo
       "createStore": "atlasStore",
       "provider": "atlas",
       "clusterName": "Cluster0",
-      "projectId": "5e01271cc56c98243b3e6cef"
+      "projectId": "5a7ae786df9db150b574fd75"
     });
     console.log(JSON.stringify(atlasStoreResult));
     // List Stores
@@ -138,11 +143,11 @@ const uri = "mongodb://myuser:demo123@{HostName}/myFirstDatabase?ssl=true&authSo
     })));
     // Create Atlas Collection
     const atlasCollectionResult = await client.db().command({
-      "create": "listingsAndReviews",
+      "create": "theatersCollection",
       "dataSources": [
         {
-          "collection": "listingsAndReviews",
-          "database": "sample_airbnb",
+          "collection": "theaters",
+          "database": "mflix",
           "storeName": "atlasStore"
         }
       ]
