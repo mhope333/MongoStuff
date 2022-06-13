@@ -1,5 +1,5 @@
 # MongoStuff
-
+Various testing of mongo functions and features.
 #### Depending on what files you would like to run - Please set the following environment variables locally:
 ```
 export MONGO_CONNECTION_STRING="{{yourMongoConnectionString}}"
